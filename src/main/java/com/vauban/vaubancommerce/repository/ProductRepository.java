@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.vauban.vaubancommerce.model.Product;
 
-public interface ProductReposirory extends CrudRepository<Product, Long> {
+public interface ProductRepository extends CrudRepository<Product, Long> {
 
 }

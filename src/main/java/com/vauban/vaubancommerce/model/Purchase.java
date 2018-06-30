@@ -6,13 +6,14 @@ import java.util.List;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 public class Purchase {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 
 	@NotNull
 	private LocalDateTime purchaseDate;
@@ -23,11 +24,16 @@ public class Purchase {
 	@NotNull
 	private Double totalPrice;
 
-	public long getId() {
+	@OneToOne
+	private User buyer;
+
+	private boolean canceled = false;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId( long id ) {
+	public void setId( Long id ) {
 		this.id = id;
 	}
 
@@ -53,6 +59,22 @@ public class Purchase {
 
 	public void setTotalPrice( Double totalPrice ) {
 		this.totalPrice = totalPrice;
+	}
+
+	public User getBuyer() {
+		return buyer;
+	}
+
+	public void setBuyer( User buyer ) {
+		this.buyer = buyer;
+	}
+
+	public boolean isCanceled() {
+		return canceled;
+	}
+
+	public void setCanceled( boolean canceled ) {
+		this.canceled = canceled;
 	}
 
 }

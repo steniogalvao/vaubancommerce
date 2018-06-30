@@ -22,6 +22,8 @@ public class Product {
 	@NotNull
 	private int amount;
 
+	private boolean active = true;
+
 	public Long getId() {
 		return Id;
 	}
@@ -60,6 +62,14 @@ public class Product {
 
 	public void setAmount( int amount ) {
 		this.amount = amount;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive( boolean active ) {
+		this.active = active;
 	}
 
 }
