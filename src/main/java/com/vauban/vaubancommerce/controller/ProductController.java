@@ -4,6 +4,8 @@ import static com.vauban.vaubancommerce.utils.StaticStrings.ID;
 
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -83,6 +85,20 @@ public class ProductController {
 			product.setActive( false );
 			productRepository.save( product );
 		}
+	}
+
+	@PostConstruct
+	private void startProductPack() {
+		Product p1 = new Product( "TV", "A really nice TV, big screen full of collors and so bright", Double.valueOf( 999 ), 15, true );
+		Product p2 = new Product( "Trash", "Some trashcan", Double.valueOf( 60 ), 1, true );
+		Product p3 = new Product( "Monitor", "For games of job is always good have a big monitor", Double.valueOf( 500 ), 5, true );
+		Product p4 = new Product( "Notebook", "fast, durable, portable, just buy and start to have fun!", Double.valueOf( 1200 ), 2, true );
+		Product p5 = new Product( "in-ear headset", "Stay out of the world, or inside your world! this headset will isolate you to stay focus", Double.valueOf( 20 ), 99, true );
+		productRepository.save( p1 );
+		productRepository.save( p2 );
+		productRepository.save( p3 );
+		productRepository.save( p4 );
+		productRepository.save( p5 );
 	}
 
 }

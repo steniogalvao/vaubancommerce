@@ -1,9 +1,11 @@
 package com.vauban.vaubancommerce.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Product {
 
 	@Id
@@ -23,6 +25,17 @@ public class Product {
 	private int amount;
 
 	private boolean active = true;
+
+	public Product() {}
+
+	public Product( @NotNull String name, @NotNull String description, @NotNull Double price, @NotNull int amount, boolean active ) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.amount = amount;
+		this.active = active;
+	}
 
 	public Long getId() {
 		return Id;
