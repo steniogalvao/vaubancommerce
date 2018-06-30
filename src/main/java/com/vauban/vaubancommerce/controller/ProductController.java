@@ -2,7 +2,9 @@ package com.vauban.vaubancommerce.controller;
 
 import static com.vauban.vaubancommerce.utils.StaticStrings.ID;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -38,6 +40,19 @@ public class ProductController {
 		} else {
 			throw new NotFoundEntity( ID, String.valueOf( productId ) );
 		}
+	}
+
+	@GetMapping( "/products" )
+	public List<Product> getAllProducts() throws NotFoundEntity {
+		List<Product> products = (List<Product>) productRepository.findAll();
+		return products;
+	}
+
+	@GetMapping( "/products/active" )
+	public List<Product> getAllProductsActive() throws NotFoundEntity {
+		List<Product> products = (List<Product>) productRepository.findAll();
+		products = products.stream().filter( Product::isActive ).collect( Collectors.toList() );
+		return products;
 	}
 
 	@PostMapping( "/product" )
@@ -94,11 +109,13 @@ public class ProductController {
 		Product p3 = new Product( "Monitor", "For games of job is always good have a big monitor", Double.valueOf( 500 ), 5, true );
 		Product p4 = new Product( "Notebook", "fast, durable, portable, just buy and start to have fun!", Double.valueOf( 1200 ), 2, true );
 		Product p5 = new Product( "in-ear headset", "Stay out of the world, or inside your world! this headset will isolate you to stay focus", Double.valueOf( 20 ), 99, true );
+		Product p6 = new Product( "GoPro", "register all your moments with this awesome camera!", Double.valueOf( 499 ), 3, false );
 		productRepository.save( p1 );
 		productRepository.save( p2 );
 		productRepository.save( p3 );
 		productRepository.save( p4 );
 		productRepository.save( p5 );
+		productRepository.save( p6 );
 	}
 
 }
