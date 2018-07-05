@@ -1,28 +1,34 @@
 package com.vauban.vaubancommerce.security;
 
-public class TokenValidatorInterceptor { 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-	
-//
-//	@Override
-//	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
-//		System.out.println( "---------------------------------------" );
-//		System.out.println( request.getRequestURI() );
-//		System.out.println( "---------------------------------------" );
-//		if ( !UriEnum.contains( request.getRequestURI() ) ) {
-//			return false;
-//		} else {
-//			return true;
-//		}
-//	}
-//
-//	private boolean reutrnError( HttpServletResponse response, int code, String msg ) {
-//		try {
-//			response.getWriter().write( msg );
-//			response.setStatus( code );
-//		} catch ( IOException e ) {
-//			e.printStackTrace();
-//		}
-//		return false;
-//	}
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+@Component
+public class TokenValidatorInterceptor implements HandlerInterceptor {
+
+	@Override
+	public void afterCompletion( HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3 ) throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void postHandle( HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3 ) throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean preHandle( HttpServletRequest request, HttpServletResponse response, Object handler ) throws Exception {
+		System.out.println( "============================" );
+		System.out.println( request.getRequestURI() );
+		System.out.println( "============================" );
+		// Token validation here, by URI
+		return true;
+	}
+
 }
