@@ -14,8 +14,7 @@ public class PurchaseItem {
 	private long id;
 
 	@NotNull
-	@OneToOne
-	private Product product;
+	private long productId;
 
 	@NotNull
 	private int amount;
@@ -28,12 +27,12 @@ public class PurchaseItem {
 		this.id = id;
 	}
 
-	public Product getProduct() {
-		return product;
+	public long getProductId() {
+		return productId;
 	}
 
-	public void setProduct( Product product ) {
-		this.product = product;
+	public void setProductId( long productId ) {
+		this.productId = productId;
 	}
 
 	public int getAmount() {

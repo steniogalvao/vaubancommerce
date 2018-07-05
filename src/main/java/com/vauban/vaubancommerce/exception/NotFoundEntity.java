@@ -8,7 +8,7 @@ public class NotFoundEntity extends Exception {
 	static final long serialVersionUID = -3387516993334229948L;
 
 	public NotFoundEntity( String field, String message ) {
-		super( "Entidade com o '" + field + "' '" + message + "' não encontrada" );
+		super( "Entity with '" + field + "' '" + message + "' not found" );
 	}
 
 }

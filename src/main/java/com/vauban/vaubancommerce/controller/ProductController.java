@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vauban.vaubancommerce.exception.InvalidAmountException;
 import com.vauban.vaubancommerce.exception.MandatoryField;
 import com.vauban.vaubancommerce.exception.NotFoundEntity;
 import com.vauban.vaubancommerce.model.Product;
@@ -80,12 +81,15 @@ public class ProductController {
 	}
 
 	@PutMapping( "/product/remove/{productId}" )
-	public Product removeProductStock( @PathVariable Long productId, @RequestParam int amount ) throws NotFoundEntity {
+	public Product removeProductStock( @PathVariable Long productId, @RequestParam int amount ) throws NotFoundEntity,InvalidAmountException {
 		Optional<Product> response = productRepository.findById( productId );
 		if ( !response.isPresent() ) {
 			throw new NotFoundEntity( ID, String.valueOf( productId ) );
 		}
 		Product product = response.get();
+		if(product.getAmount()<amount) {
+			throw new InvalidAmountException();
+		}
 		product.setAmount( product.getAmount() - amount );
 		return productRepository.save( product );
 	}
